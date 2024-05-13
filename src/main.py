@@ -36,7 +36,7 @@ def main():
     #generate_pandas_data()
     if "llm" not in st.session_state:
         session = boto3.Session()
-        bedrock_client = session.client(service_name="bedrock-runtime")
+        bedrock_client = session.client(service_name="bedrock-runtime", region_name='us-east-1')
 
         st.session_state.llm = Bedrock(
             model_id="anthropic.claude-v2",
