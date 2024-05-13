@@ -1,5 +1,6 @@
 import boto3
 import torch
+import os
 from transformers import AutoTokenizer, AutoModel
 from langchain_text_splitters import CharacterTextSplitter
 import requests
@@ -10,7 +11,12 @@ tokenizer = AutoTokenizer.from_pretrained(model_name)
 model = AutoModel.from_pretrained(model_name)
 def create_s3_client():
     """Crea un cliente de S3."""
-    return boto3.client('s3')
+    aws_access_key_id = os.environ.get("AWS_ACCESS_KEY_ID")
+    aws_secret_access_key = os.environ.get("AWS_SECRET_ACCESS_KEY")
+    return boto3.client('s3',
+                        aws_access_key_id=aws_access_key_id,
+                        aws_secret_access_key=aws_secret_access_key,)
+    #return boto3.client('s3')
 
 def list_files_in_bucket(bucket_name):
     """Lista los archivos en un bucket especificado."""
