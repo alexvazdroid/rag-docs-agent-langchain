@@ -11,7 +11,7 @@ import streamlit as st
 from transformers import AutoTokenizer, AutoModel
 from sentence_transformers import SentenceTransformer
 from s3_utils import list_files_in_bucket, get_file_from_s3
-from pandas_utils import generate_pandas_data
+#from pandas_utils import generate_pandas_data
 from dotenv import load_dotenv
 
 load_dotenv()
